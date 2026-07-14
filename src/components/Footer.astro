@@ -38,17 +38,29 @@ const instagramUrl = 'https://instagram.com/_landaloja';
     margin-bottom: var(--space-4);
   }
 
+  /* Mobile-first: blocos empilhados e alinhados à esquerda */
   .inner {
     max-width: var(--container-max);
     margin-inline: auto;
     padding-inline: var(--container-pad);
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: flex-start;
     gap: var(--space-8);
-    flex-wrap: wrap;
     padding-bottom: var(--space-8);
     border-bottom: 1px solid var(--line-on-dark);
+  }
+
+  @media (min-width: 48rem) {
+    .inner {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .info {
+      text-align: right;
+    }
   }
 
   .logo {
@@ -70,7 +82,6 @@ const instagramUrl = 'https://instagram.com/_landaloja';
     flex-direction: column;
     gap: var(--space-2);
     font-size: var(--text-sm);
-    text-align: right;
   }
 
   .info a {

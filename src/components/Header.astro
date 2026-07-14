@@ -9,13 +9,24 @@ const navLinks = [
 const instagramUrl = 'https://instagram.com/_landaloja';
 ---
 
-<header class="site-header">
+<header class="site-header" id="site-header">
   <div class="inner">
     <a href="/" class="logo">
       <img src="/images/logo.jpg" alt="" width="44" height="44" />
       <span>Landa</span>
     </a>
-    <nav aria-label="Navegação principal">
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="site-nav"
+      aria-label="Abrir menu"
+    >
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <nav id="site-nav" class="site-nav" aria-label="Navegação principal">
       <ul class="nav-list">
         {
           navLinks.map((link) => (
@@ -39,6 +50,43 @@ const instagramUrl = 'https://instagram.com/_landaloja';
   </div>
 </header>
 
+<script>
+  const header = document.getElementById('site-header');
+  const toggle = header?.querySelector<HTMLButtonElement>('.menu-toggle');
+  const nav = document.getElementById('site-nav');
+
+  if (header && toggle && nav) {
+    const setOpen = (isOpen: boolean) => {
+      header.classList.toggle('is-open', isOpen);
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && header.classList.contains('is-open')) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    nav.addEventListener('click', (event) => {
+      if (event.target instanceof Element && event.target.closest('a')) {
+        setOpen(false);
+      }
+    });
+
+    const onScroll = () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 4);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+</script>
+
 <style>
   .site-header {
     position: sticky;
@@ -46,6 +94,11 @@ const instagramUrl = 'https://instagram.com/_landaloja';
     z-index: 10;
     background: var(--bg);
     border-bottom: 1px solid var(--line);
+    transition: box-shadow var(--transition-fast);
+  }
+
+  .site-header.is-scrolled {
+    box-shadow: var(--shadow-header);
   }
 
   .inner {
@@ -56,7 +109,6 @@ const instagramUrl = 'https://instagram.com/_landaloja';
     align-items: center;
     justify-content: space-between;
     gap: var(--space-4);
-    flex-wrap: wrap;
   }
 
   .logo {
@@ -74,14 +126,66 @@ const instagramUrl = 'https://instagram.com/_landaloja';
     border-radius: var(--radius-md);
   }
 
+  /* --- Botão hambúrguer (só mobile) --- */
+  .menu-toggle {
+    display: grid;
+    gap: 5px;
+    padding: var(--space-2);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .bar {
+    width: 22px;
+    height: 2px;
+    background: var(--fg);
+    transition:
+      transform var(--transition-fast),
+      opacity var(--transition-fast);
+  }
+
+  .is-open .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .is-open .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .is-open .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* --- Nav: painel dropdown no mobile --- */
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow-header);
+  }
+
+  .is-open .site-nav {
+    display: block;
+  }
+
   .nav-list {
     display: flex;
-    align-items: center;
-    gap: var(--space-6);
-    flex-wrap: wrap;
+    flex-direction: column;
+    padding: var(--space-2) var(--container-pad) var(--space-4);
+  }
+
+  .nav-list li + li {
+    border-top: 1px solid var(--line);
   }
 
   .nav-list a {
+    display: block;
+    padding: var(--space-3) 0;
     font-size: var(--text-sm);
     font-weight: 600;
     text-transform: uppercase;
@@ -90,5 +194,34 @@ const instagramUrl = 'https://instagram.com/_landaloja';
 
   .instagram {
     color: var(--accent-deep);
+  }
+
+  @media (min-width: 48rem) {
+    .menu-toggle {
+      display: none;
+    }
+
+    .site-nav {
+      display: block;
+      position: static;
+      background: none;
+      border: none;
+      box-shadow: none;
+    }
+
+    .nav-list {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-6);
+      padding: 0;
+    }
+
+    .nav-list li + li {
+      border: 0;
+    }
+
+    .nav-list a {
+      padding: 0;
+    }
   }
 </style>

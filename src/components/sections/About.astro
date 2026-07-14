@@ -5,7 +5,7 @@ import SectionHeading from '../SectionHeading.astro';
 
 <section id="a-loja" class="about">
   <Container class="layout">
-    <div class="text">
+    <div class="text" data-reveal>
       <SectionHeading eyebrow="A loja" title="Desde 1996 em Linhares" />
       <p>
         A Landa nasceu em 1996 e virou referência de moda casual e street em
@@ -18,10 +18,12 @@ import SectionHeading from '../SectionHeading.astro';
         com marcas que a gente escolhe a dedo.
       </p>
     </div>
-    <div class="visual">
+    <div class="visual" data-reveal>
       <img
-        src="/images/look-croche-vitrine.png"
-        alt="Cliente em frente à vitrine da loja com look de crochê"
+        src="/images/looks/look-vitrine-chevron.jpg"
+        alt="Cliente em frente à vitrine da Landa com look chevron"
+        width="1200"
+        height="1500"
         loading="lazy"
       />
     </div>
@@ -33,10 +35,11 @@ import SectionHeading from '../SectionHeading.astro';
     padding-top: var(--section-y);
   }
 
+  /* Mobile-first: empilhado; vira duas colunas no desktop */
   .about :global(.layout) {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: var(--space-16);
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
     align-items: center;
   }
 
@@ -49,10 +52,10 @@ import SectionHeading from '../SectionHeading.astro';
     box-shadow: var(--shadow-card);
   }
 
-  @media (max-width: 48rem) {
+  @media (min-width: 48rem) {
     .about :global(.layout) {
-      grid-template-columns: 1fr;
-      gap: var(--space-8);
+      grid-template-columns: 1.2fr 1fr;
+      gap: var(--space-16);
     }
   }
 </style>

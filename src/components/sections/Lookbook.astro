@@ -1,0 +1,90 @@
+---
+import Container from '../Container.astro';
+import SectionHeading from '../SectionHeading.astro';
+
+const looks = [
+  {
+    image: '/images/looks/look-trico-calca.jpg',
+    alt: 'Look com tricô e calça de alfaiataria na loja',
+  },
+  {
+    image: '/images/looks/look-terno-roxo.jpg',
+    alt: 'Conjunto de alfaiataria roxo',
+  },
+  {
+    image: '/images/looks/look-calca-branca.jpg',
+    alt: 'Look com calça branca',
+  },
+  {
+    image: '/images/looks/look-camisa-bege.jpg',
+    alt: 'Camisa bege bordada',
+  },
+  {
+    image: '/images/looks/look-jaqueta-bege.jpg',
+    alt: 'Look com jaqueta bege',
+  },
+  {
+    image: '/images/looks/look-trico-rua.jpg',
+    alt: 'Tricô fotografado na rua',
+  },
+];
+---
+
+<section class="lookbook" aria-label="Lookbook">
+  <Container>
+    <div data-reveal>
+      <SectionHeading eyebrow="Lookbook" title="Direto da loja" />
+    </div>
+  </Container>
+  <ul class="strip" data-reveal>
+    {
+      looks.map((look) => (
+        <li class="item">
+          <img
+            src={look.image}
+            alt={look.alt}
+            width="1200"
+            height="1500"
+            loading="lazy"
+          />
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .lookbook {
+    background: var(--bg-alt);
+    padding-block: var(--section-y);
+    margin-top: var(--section-y);
+  }
+
+  /* Faixa horizontal com scroll-snap; alinha com o container no desktop */
+  .strip {
+    display: flex;
+    gap: var(--space-4);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-inline: max(
+      var(--container-pad),
+      calc((100vw - var(--container-max)) / 2 + var(--container-pad))
+    );
+    scroll-padding-inline: var(--container-pad);
+    padding-bottom: var(--space-2);
+  }
+
+  .item {
+    flex: 0 0 min(70vw, 18rem);
+    scroll-snap-align: start;
+  }
+
+  .item img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+  }
+</style>

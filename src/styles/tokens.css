@@ -75,5 +75,8 @@
   --radius-sm: 2px;
   --radius-md: 6px;
   --shadow-card: 0 2px 16px rgb(20 22 24 / 0.08);
+  --shadow-header: 0 4px 20px rgb(20 22 24 / 0.1);
   --transition-fast: 150ms ease;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --header-h: 4.75rem; /* altura do header fixo (logo 44px + padding) */
 }

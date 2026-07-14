@@ -55,6 +55,41 @@ const byCategory = categories
   }
 </Base>
 
+<script>
+  // Scrollspy leve: marca o chip da categoria visível
+  const chips = document.querySelectorAll<HTMLAnchorElement>(
+    '.category-nav .chip'
+  );
+  const chipBySection = new Map<Element, HTMLAnchorElement>();
+
+  chips.forEach((chip) => {
+    const id = chip.getAttribute('href')?.slice(1);
+    const section = id ? document.getElementById(id) : null;
+    if (section) chipBySection.set(section, chip);
+  });
+
+  let activeChip: HTMLAnchorElement | null = null;
+
+  const spy = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const chip = chipBySection.get(entry.target);
+        if (!chip || chip === activeChip) return;
+        activeChip?.classList.remove('is-active');
+        activeChip?.removeAttribute('aria-current');
+        chip.classList.add('is-active');
+        chip.setAttribute('aria-current', 'true');
+        chip.scrollIntoView({ block: 'nearest', inline: 'center' });
+        activeChip = chip;
+      });
+    },
+    { rootMargin: '-25% 0px -65% 0px' }
+  );
+
+  chipBySection.forEach((_, section) => spy.observe(section));
+</script>
+
 <style>
   .page-hero {
     background: var(--bg-dark);
@@ -80,7 +115,7 @@ const byCategory = categories
 
   .category-nav {
     position: sticky;
-    top: 0;
+    top: var(--header-h);
     z-index: 9;
     background: var(--bg);
     border-bottom: 1px solid var(--line);
@@ -115,7 +150,8 @@ const byCategory = categories
       border-color var(--transition-fast);
   }
 
-  .chip:hover {
+  .chip:hover,
+  .chip.is-active {
     background: var(--fg);
     border-color: var(--fg);
     color: var(--bg);
@@ -123,7 +159,7 @@ const byCategory = categories
 
   .category-section {
     padding-top: var(--space-16);
-    scroll-margin-top: 5rem;
+    scroll-margin-top: calc(var(--header-h) + 4rem);
   }
 
   .category-section h2 {
