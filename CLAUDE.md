@@ -35,6 +35,6 @@ Fontes self-hosted via Fontsource: Archivo Variable (display) e Inter Variable (
 
 ## Pendências conhecidas
 
-- Endereço exato e horário de funcionamento da loja (placeholder em VisitCta/Footer)
-- Favicon e logo definitivos
-- Fotos próprias da loja/produtos (as atuais são referências de marcas: The Saint, Champion, Reserva, NB, Oakley, '47)
+- Endereço exato, horário de funcionamento e WhatsApp da loja (placeholder em VisitCta/Footer)
+- Preços dos produtos (vitrine atual sem preço, CTA "Consultar" via Instagram)
+- Mídia bruta do Instagram em `media/` (gitignored) — mais fotos disponíveis para novas seções
