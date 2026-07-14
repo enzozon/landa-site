@@ -1,0 +1,58 @@
+---
+import Container from '../Container.astro';
+import SectionHeading from '../SectionHeading.astro';
+---
+
+<section id="a-loja" class="about">
+  <Container class="layout">
+    <div class="text">
+      <SectionHeading eyebrow="A loja" title="Desde 1996 em Linhares" />
+      <p>
+        A Landa nasceu em 1996 e virou referência de moda casual e street em
+        Linhares. De lá pra cá, o visual mudou — a essência não: roupa boa,
+        atendimento de loja de bairro e um radar sempre ligado no que a rua
+        está vestindo.
+      </p>
+      <p>
+        Aqui você encontra do look de praia ao caprichado pra sair à noite,
+        com marcas que a gente escolhe a dedo.
+      </p>
+    </div>
+    <div class="visual">
+      <img
+        src="/images/look-croche-vitrine.png"
+        alt="Cliente em frente à vitrine da loja com look de crochê"
+        loading="lazy"
+      />
+    </div>
+  </Container>
+</section>
+
+<style>
+  .about {
+    padding-top: var(--section-y);
+  }
+
+  .about :global(.layout) {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .text p + p {
+    margin-top: var(--space-4);
+  }
+
+  .visual img {
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+  }
+
+  @media (max-width: 48rem) {
+    .about :global(.layout) {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+</style>

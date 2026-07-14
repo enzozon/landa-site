@@ -1,0 +1,196 @@
+---
+import Base from '../layouts/Base.astro';
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const colors = [
+  { token: '--tiki-700', label: 'Tiki 700 · bordô da logo' },
+  { token: '--tiki-500', label: 'Tiki 500 · acento (fundo claro)' },
+  { token: '--tiki-300', label: 'Tiki 300 · acento (fundo escuro)' },
+  { token: '--ink-900', label: 'Ink 900 · preto editorial' },
+  { token: '--ink-700', label: 'Ink 700' },
+  { token: '--ink-500', label: 'Ink 500 · texto secundário' },
+  { token: '--paper-100', label: 'Paper 100 · fundo' },
+  { token: '--paper-200', label: 'Paper 200 · areia' },
+  { token: '--steel-500', label: 'Steel 500 · azul-aço (apoio)' },
+  { token: '--hydro-400', label: 'Hydro 400 · azul NB (apoio)' },
+  { token: '--olive-600', label: 'Olive 600' },
+];
+
+const spaces = [1, 2, 3, 4, 6, 8, 12, 16, 24];
+---
+
+<Base title="Landa — Guia de Estilo">
+  <Container>
+    <section class="block">
+      <SectionHeading eyebrow="Design System" title="Guia de estilo" />
+      <p>
+        Referência viva dos tokens e componentes do site. Fonte da verdade:
+        <code>src/styles/tokens.css</code>.
+      </p>
+    </section>
+
+    <section class="block">
+      <h3>Cores</h3>
+      <ul class="swatches">
+        {
+          colors.map((color) => (
+            <li>
+              <div
+                class="swatch"
+                style={`background: var(${color.token})`}
+              />
+              <code>{color.token}</code>
+              <span>{color.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="block">
+      <h3>Tipografia</h3>
+      <div class="type-ramp">
+        <p class="t3">Display 3xl — Archivo</p>
+        <p class="t2">Heading 2xl — Archivo</p>
+        <p class="t1">Heading xl — Archivo</p>
+        <p class="tlg">Lead lg — Inter</p>
+        <p class="tbase">Body base — Inter. O corpo de texto padrão do site.</p>
+        <p class="tsm">Small sm — Inter, para legendas e apoio.</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <h3>Espaçamento</h3>
+      <ul class="space-list">
+        {
+          spaces.map((step) => (
+            <li>
+              <code>--space-{step}</code>
+              <div
+                class="space-bar"
+                style={`width: var(--space-${step})`}
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="block">
+      <h3>Botões</h3>
+      <div class="row">
+        <Button href="#">Solid</Button>
+        <Button href="#" variant="outline">Outline</Button>
+      </div>
+      <div class="row dark">
+        <Button href="#" variant="on-dark">On dark</Button>
+      </div>
+    </section>
+  </Container>
+</Base>
+
+<style>
+  .block {
+    padding-top: var(--space-16);
+  }
+
+  .block h3 {
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--line);
+  }
+
+  code {
+    font-size: var(--text-sm);
+    color: var(--accent-deep);
+  }
+
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    gap: var(--space-6);
+  }
+
+  .swatches li {
+    display: grid;
+    gap: var(--space-1);
+    font-size: var(--text-xs);
+    color: var(--fg-muted);
+  }
+
+  .swatch {
+    height: 4rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line);
+  }
+
+  .type-ramp p {
+    margin-bottom: var(--space-4);
+  }
+
+  .t3 {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: var(--leading-tight);
+  }
+
+  .t2 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: var(--leading-tight);
+  }
+
+  .t1 {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .tlg { font-size: var(--text-lg); }
+  .tbase { font-size: var(--text-base); }
+  .tsm {
+    font-size: var(--text-sm);
+    color: var(--fg-muted);
+  }
+
+  .space-list {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .space-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .space-list code {
+    min-width: 7rem;
+  }
+
+  .space-bar {
+    height: var(--space-4);
+    background: var(--accent);
+    border-radius: var(--radius-sm);
+  }
+
+  .row {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    padding: var(--space-6);
+  }
+
+  .row.dark {
+    background: var(--bg-dark);
+    border-radius: var(--radius-md);
+    margin-top: var(--space-4);
+  }
+</style>

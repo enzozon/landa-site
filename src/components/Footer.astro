@@ -1,0 +1,87 @@
+---
+const year = new Date().getFullYear();
+const instagramUrl = 'https://instagram.com/_landaloja';
+---
+
+<footer class="site-footer">
+  <div class="inner">
+    <div class="brand">
+      <img
+        src="/images/logo.jpg"
+        alt="Logo da Landa: máscara tiki desenhada à mão"
+        width="72"
+        height="72"
+        loading="lazy"
+      />
+      <p class="logo">Landa</p>
+      <p class="tagline">Casual &amp; street desde 1996.</p>
+    </div>
+    <div class="info">
+      <p>Linhares — Espírito Santo</p>
+      <a href={instagramUrl} target="_blank" rel="noopener">@_landaloja</a>
+    </div>
+  </div>
+  <div class="legal">
+    <p>© {year} Landa. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--bg-brand);
+    color: var(--fg-on-dark);
+    padding-block: var(--space-16) var(--space-8);
+    margin-top: var(--section-y);
+  }
+
+  .brand img {
+    margin-bottom: var(--space-4);
+  }
+
+  .inner {
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-pad);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-8);
+    flex-wrap: wrap;
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--line-on-dark);
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+  }
+
+  .tagline {
+    color: var(--accent-soft);
+    font-size: var(--text-sm);
+    margin-top: var(--space-2);
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    text-align: right;
+  }
+
+  .info a {
+    color: var(--accent-soft);
+  }
+
+  .legal {
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding: var(--space-6) var(--container-pad) 0;
+    font-size: var(--text-xs);
+    color: var(--accent-soft);
+  }
+</style>

@@ -1,0 +1,43 @@
+---
+import Container from '../Container.astro';
+import SectionHeading from '../SectionHeading.astro';
+import Button from '../Button.astro';
+---
+
+<section id="visite" class="visit">
+  <Container>
+    <SectionHeading
+      eyebrow="Visite"
+      title="Passa na loja"
+      onDark
+    />
+    <p class="lead">
+      Estamos no centro de Linhares — ES. Chega pra provar, pedir uma dica de
+      look ou só trocar uma ideia.
+    </p>
+    <div class="actions">
+      <Button href="https://instagram.com/_landaloja" variant="on-dark">
+        Chama no Instagram
+      </Button>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .visit {
+    background: var(--bg-dark);
+    color: var(--fg-on-dark);
+    padding-block: var(--section-y);
+    margin-top: var(--section-y);
+  }
+
+  .lead {
+    color: var(--paper-200);
+    font-size: var(--text-lg);
+    margin-top: calc(-1 * var(--space-8));
+  }
+
+  .actions {
+    margin-top: var(--space-8);
+  }
+</style>

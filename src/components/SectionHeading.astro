@@ -1,0 +1,38 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  onDark?: boolean;
+}
+
+const { eyebrow, title, onDark = false } = Astro.props;
+---
+
+<header class:list={['section-heading', { 'on-dark': onDark }]}>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <h2>{title}</h2>
+</header>
+
+<style>
+  .section-heading {
+    margin-bottom: var(--space-12);
+  }
+
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--accent-deep);
+    margin-bottom: var(--space-2);
+  }
+
+  .on-dark .eyebrow {
+    color: var(--accent-soft);
+  }
+
+  .on-dark h2 {
+    color: var(--fg-on-dark);
+  }
+</style>
