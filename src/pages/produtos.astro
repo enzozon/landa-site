@@ -1,0 +1,151 @@
+---
+import Base from '../layouts/Base.astro';
+import Container from '../components/Container.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { categories, products } from '../data/products';
+
+const byCategory = categories
+  .map((category) => ({
+    ...category,
+    items: products.filter((p) => p.category === category.id),
+  }))
+  .filter((category) => category.items.length > 0);
+---
+
+<Base
+  title="Produtos — Landa | Linhares-ES"
+  description="Camisetas, camisas, tricô, moda feminina, calçados e acessórios na Landa, em Linhares-ES."
+>
+  <header class="page-hero">
+    <Container>
+      <p class="eyebrow">Vitrine</p>
+      <h1>Produtos</h1>
+      <p class="lead">
+        Um recorte do que está na loja agora. Peça pelo Instagram ou vem
+        provar em Linhares.
+      </p>
+    </Container>
+  </header>
+
+  <nav class="category-nav" aria-label="Categorias">
+    <Container class="chips">
+      {
+        byCategory.map((category) => (
+          <a href={`#${category.id}`} class="chip">
+            {category.label}
+          </a>
+        ))
+      }
+    </Container>
+  </nav>
+
+  {
+    byCategory.map((category) => (
+      <section id={category.id} class="category-section">
+        <Container>
+          <h2>{category.label}</h2>
+          <div class="grid">
+            {category.items.map((product) => (
+              <ProductCard product={product} />
+            ))}
+          </div>
+        </Container>
+      </section>
+    ))
+  }
+</Base>
+
+<style>
+  .page-hero {
+    background: var(--bg-dark);
+    color: var(--fg-on-dark);
+    padding-block: var(--space-16);
+  }
+
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--accent-soft);
+    margin-bottom: var(--space-2);
+  }
+
+  .lead {
+    color: var(--paper-200);
+    font-size: var(--text-lg);
+    margin-top: var(--space-4);
+  }
+
+  .category-nav {
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding-block: var(--space-3);
+  }
+
+  .category-nav :global(.chips) {
+    display: flex;
+    gap: var(--space-2);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .category-nav :global(.chips)::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chip {
+    flex-shrink: 0;
+    padding: var(--space-2) var(--space-4);
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    transition:
+      background var(--transition-fast),
+      color var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .chip:hover {
+    background: var(--fg);
+    border-color: var(--fg);
+    color: var(--bg);
+  }
+
+  .category-section {
+    padding-top: var(--space-16);
+    scroll-margin-top: 5rem;
+  }
+
+  .category-section h2 {
+    margin-bottom: var(--space-8);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8) var(--space-4);
+  }
+
+  @media (min-width: 48rem) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-8) var(--space-6);
+    }
+  }
+
+  @media (min-width: 72rem) {
+    .grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>
