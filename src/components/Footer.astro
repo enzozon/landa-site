@@ -2,6 +2,9 @@
 import { store, whatsappUrl } from '../data/store';
 
 const year = new Date().getFullYear();
+const hoursSummary = store.hours
+  .map((slot) => `${slot.days}, ${slot.time}`)
+  .join(' · ');
 ---
 
 <footer class="site-footer">
@@ -19,7 +22,7 @@ const year = new Date().getFullYear();
     </div>
     <div class="info">
       <p>{store.addressStreet} — {store.addressDistrict}</p>
-      <p>Seg a sex, 8h30–18h30 · Sáb, 8h30–13h</p>
+      <p>{hoursSummary}</p>
       <a
         href={whatsappUrl('Oi! Vim pelo site da Landa.')}
         target="_blank"

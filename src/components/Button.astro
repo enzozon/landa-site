@@ -7,9 +7,11 @@ interface Props {
 }
 
 const { href, variant = 'solid', target, rel } = Astro.props;
+// Links externos nunca ficam sem noopener, mesmo se o chamador esquecer
+const safeRel = rel ?? (target === '_blank' ? 'noopener' : undefined);
 ---
 
-<a href={href} target={target} rel={rel} class:list={['button', variant]}>
+<a href={href} target={target} rel={safeRel} class:list={['button', variant]}>
   <slot />
 </a>
 

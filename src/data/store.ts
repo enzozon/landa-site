@@ -1,9 +1,11 @@
+const WHATSAPP_NUMBER = '5527999287923';
+
 /** Dados de contato e localização da loja — fonte única para Footer, VisitCta e páginas de produto. */
 export const store = {
   name: 'Landa',
   instagramHandle: '@_landaloja',
   instagramUrl: 'https://instagram.com/_landaloja',
-  whatsappDisplay: '(27) 99928-7923',
+  whatsappDisplay: `(${WHATSAPP_NUMBER.slice(2, 4)}) ${WHATSAPP_NUMBER.slice(4, 9)}-${WHATSAPP_NUMBER.slice(9)}`,
   addressStreet: 'Av. Rui Barbosa, 594',
   addressDistrict: 'Centro, Linhares — ES',
   hours: [
@@ -15,8 +17,6 @@ export const store = {
   mapsEmbedUrl:
     'https://www.google.com/maps?q=Av.+Rui+Barbosa,+594,+Centro,+Linhares+-+ES&output=embed',
 } as const;
-
-const WHATSAPP_NUMBER = '5527999287923';
 
 export function whatsappUrl(message?: string): string {
   const base = `https://wa.me/${WHATSAPP_NUMBER}`;

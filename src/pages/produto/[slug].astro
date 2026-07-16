@@ -44,6 +44,8 @@ const message = `Oi! Vi o site e me interessei: ${product.name}`;
           </>
         )
       }
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{product.name}</span>
     </nav>
 
     <article class="product">
@@ -52,7 +54,9 @@ const message = `Oi! Vi o site e me interessei: ${product.name}`;
           images.map((src, index) => (
             <img
               src={src}
-              alt={index === 0 ? product.name : `${product.name} — detalhe`}
+              alt={
+                index === 0 ? product.name : `${product.name} — detalhe ${index}`
+              }
               width="1200"
               height="1600"
               loading={index === 0 ? 'eager' : 'lazy'}
@@ -71,7 +75,8 @@ const message = `Oi! Vi o site e me interessei: ${product.name}`;
             <p class="price">{priceLabel}</p>
           ) : (
             <p class="price is-placeholder">
-              R$ —<span class="price-note">preço sob consulta</span>
+              <span aria-hidden="true">R$ —</span>
+              <span class="price-note">Preço sob consulta</span>
             </p>
           )
         }
@@ -249,7 +254,8 @@ const message = `Oi! Vi o site e me interessei: ${product.name}`;
     font-family: var(--font-display);
     font-size: var(--text-sm);
     font-weight: 700;
-    border: 1px solid var(--line);
+    /* fg-muted em vez de --line: borda precisa de contraste >= 3:1 (WCAG 1.4.11) */
+    border: 1px solid var(--fg-muted);
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition:
