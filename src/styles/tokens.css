@@ -1,8 +1,10 @@
+/* Hallmark · genre: editorial · macrostructure: Photographic · theme: brand (Landa bordô/creme/tinta) · enrichment: none (fotografia real) · nav: N6 · footer: Ft1 · design-system: design.md · designed-as-app */
 /* ============================================
    LANDA — Design Tokens
    Paleta derivada do material da marca:
    preto editorial, creme/off-white, azul-aço,
    oliva e o azul do tênis como acento.
+   Sistema travado: ver design.md na raiz.
    ============================================ */
 
 :root {
@@ -33,6 +35,7 @@
   --bg-brand: var(--tiki-700);
   --line: rgb(20 22 24 / 0.14);
   --line-on-dark: rgb(245 242 235 / 0.18);
+  --scrim-ink: rgb(20 22 24 / 0.65); /* base de legenda sobre foto */
 
   /* --- Tipografia --- */
   --font-display: 'Archivo Variable', sans-serif;
@@ -73,10 +76,21 @@
 
   /* --- Misc --- */
   --radius-sm: 2px;
-  --radius-md: 6px;
+  --radius-md: 0; /* imagem editorial: canto reto (ver design.md) */
   --shadow-card: 0 2px 16px rgb(20 22 24 / 0.08);
   --shadow-header: 0 4px 20px rgb(20 22 24 / 0.1);
   --transition-fast: 150ms ease;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --header-h: 4.75rem; /* altura do header fixo (logo 44px + padding) */
+
+  /* Alturas do header: no mobile é a barra compacta inteira; no desktop o
+     masthead rola pra fora e só a fileira de links (--header-h) fica sticky */
+  --header-h: 4.75rem;
+  --masthead-h: 0rem;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --header-h: 3.25rem;
+    --masthead-h: 7.5rem;
+  }
 }

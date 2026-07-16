@@ -26,6 +26,7 @@ Fontes self-hosted via Fontsource: Archivo Variable (display) e Inter Variable (
 
 ## Estrutura
 
+- `design.md` — **sistema de design travado** (gênero editorial, macroestrutura fotográfica, nav masthead N6, footer Ft1) — ler antes de qualquer mudança visual; produzido via skill Hallmark
 - `src/styles/tokens.css` — **fonte da verdade do design system** (cores, tipografia, espaçamento). Sempre usar tokens, nunca valores hardcoded.
 - `src/styles/global.css` — reset leve + estilos de elemento base
 - `src/layouts/Base.astro` — layout padrão (head, Header, Footer)

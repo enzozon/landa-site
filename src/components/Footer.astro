@@ -7,17 +7,11 @@ const hoursSummary = store.hours
   .join(' · ');
 ---
 
+<!-- Ft1 mast-headed: o wordmark ancora a banda; contato ao lado (design.md) -->
 <footer class="site-footer">
   <div class="inner">
-    <div class="brand">
-      <img
-        src="/images/logo.jpg"
-        alt="Logo da Landa: máscara tiki desenhada à mão"
-        width="72"
-        height="72"
-        loading="lazy"
-      />
-      <p class="logo">Landa</p>
+    <div class="mast">
+      <p class="wordmark">Landa</p>
       <p class="tagline">Casual &amp; street desde 1996.</p>
     </div>
     <div class="info">
@@ -48,11 +42,7 @@ const hoursSummary = store.hours
     margin-top: var(--section-y);
   }
 
-  .brand img {
-    margin-bottom: var(--space-4);
-  }
-
-  /* Mobile-first: blocos empilhados e alinhados à esquerda */
+  /* Mobile-first: wordmark em cima, contato embaixo */
   .inner {
     max-width: var(--container-max);
     margin-inline: auto;
@@ -65,30 +55,19 @@ const hoursSummary = store.hours
     border-bottom: 1px solid var(--line-on-dark);
   }
 
-  @media (min-width: 48rem) {
-    .inner {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-
-    .info {
-      text-align: right;
-    }
-  }
-
-  .logo {
+  .wordmark {
     font-family: var(--font-display);
-    font-size: var(--text-2xl);
+    font-size: clamp(3rem, 2rem + 7vw, 6.5rem);
     font-weight: 900;
+    line-height: 0.9;
     text-transform: uppercase;
-    letter-spacing: var(--tracking-wider);
+    letter-spacing: var(--tracking-wide);
   }
 
   .tagline {
     color: var(--accent-soft);
     font-size: var(--text-sm);
-    margin-top: var(--space-2);
+    margin-top: var(--space-3);
   }
 
   .info {
@@ -108,5 +87,17 @@ const hoursSummary = store.hours
     padding: var(--space-6) var(--container-pad) 0;
     font-size: var(--text-xs);
     color: var(--accent-soft);
+  }
+
+  @media (min-width: 48rem) {
+    .inner {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .info {
+      text-align: right;
+    }
   }
 </style>
