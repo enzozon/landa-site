@@ -21,7 +21,10 @@ Fontes self-hosted via Fontsource: Archivo Variable (display) e Inter Variable (
 - `src/styles/global.css` — reset leve + estilos de elemento base
 - `src/layouts/Base.astro` — layout padrão (head, Header, Footer)
 - `src/components/` — componentes reutilizáveis (Container, Button, SectionHeading, Header, Footer)
-- `src/components/sections/` — seções da home (Hero, StyleGrid, About, VisitCta)
+- `src/components/sections/` — seções da home (Hero, StyleGrid, Lookbook, About, VisitCta)
+- `src/data/store.ts` — contato/endereço/horários da loja (fonte única; links wa.me via `whatsappUrl()`)
+- `src/data/products.ts` — catálogo (slug, categoria, preço placeholder, tamanhos)
+- `src/pages/produto/[slug].astro` — página individual de produto (tamanho + CTA WhatsApp)
 - `src/pages/styleguide.astro` — guia de estilo vivo em `/styleguide`
 - `public/images/` — fotos de produto/lookbook
 
@@ -35,6 +38,5 @@ Fontes self-hosted via Fontsource: Archivo Variable (display) e Inter Variable (
 
 ## Pendências conhecidas
 
-- Endereço exato, horário de funcionamento e WhatsApp da loja (placeholder em VisitCta/Footer)
-- Preços dos produtos (vitrine atual sem preço, CTA "Consultar" via Instagram)
+- Preços dos produtos: `price: null` em `src/data/products.ts` é placeholder — preencher em reais para exibir na página do produto (enquanto null, mostra "preço sob consulta")
 - Mídia bruta do Instagram em `media/` (gitignored) — mais fotos disponíveis para novas seções

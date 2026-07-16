@@ -6,19 +6,13 @@ interface Props {
 }
 
 const { product } = Astro.props;
-const instagramUrl = 'https://instagram.com/_landaloja';
 ---
 
 <article class="product-card" data-reveal>
-  <a
-    href={instagramUrl}
-    target="_blank"
-    rel="noopener"
-    aria-label={`Consultar ${product.name} no Instagram`}
-  >
+  <a href={`/produto/${product.slug}`}>
     <div class="frame">
       <img src={product.image} alt={product.name} loading="lazy" />
-      <span class="cta">Consultar</span>
+      <span class="cta">Ver detalhes</span>
     </div>
     {product.brand && <p class="brand">{product.brand}</p>}
     <h3>{product.name}</h3>
