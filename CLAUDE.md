@@ -10,6 +10,15 @@ surf/streetwear a looks montados pra sair.
 - `npm run build` — build estático em `dist/`
 - `npm run preview` — serve o build local
 
+## Deploy
+
+Publicado no GitHub Pages: **https://enzozon.github.io** — repo público
+`enzozon/enzozon.github.io` contém só o build (`dist/` + `.nojekyll`), o
+código-fonte fica neste repo privado. Para atualizar: `npm run build` e
+push do conteúdo de `dist/` para o `main` daquele repo. Domínio próprio
+(ex.: landa.com.br via Registro.br) pode ser apontado depois em
+Settings → Pages → Custom domain.
+
 ## Stack
 
 Astro 5 (estático, zero JS por padrão) + CSS puro com design tokens.
