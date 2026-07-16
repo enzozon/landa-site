@@ -2,12 +2,14 @@
 interface Props {
   href: string;
   variant?: 'solid' | 'outline' | 'on-dark';
+  target?: string;
+  rel?: string;
 }
 
-const { href, variant = 'solid' } = Astro.props;
+const { href, variant = 'solid', target, rel } = Astro.props;
 ---
 
-<a href={href} class:list={['button', variant]}>
+<a href={href} target={target} rel={rel} class:list={['button', variant]}>
   <slot />
 </a>
 

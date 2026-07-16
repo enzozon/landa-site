@@ -2,24 +2,57 @@
 import Container from '../Container.astro';
 import SectionHeading from '../SectionHeading.astro';
 import Button from '../Button.astro';
+import { store, whatsappUrl } from '../../data/store';
 ---
 
 <section id="visite" class="visit">
   <Container>
-    <div data-reveal>
-      <SectionHeading
-        eyebrow="Visite"
-        title="Passa na loja"
-        onDark
-      />
-      <p class="lead">
-        Estamos no centro de Linhares — ES. Chega pra provar, pedir uma dica de
-        look ou só trocar uma ideia.
-      </p>
-      <div class="actions">
-        <Button href="https://instagram.com/_landaloja" variant="on-dark">
-          Chama no Instagram
-        </Button>
+    <div class="grid">
+      <div data-reveal>
+        <SectionHeading eyebrow="Visite" title="Passa na loja" onDark />
+        <p class="lead">
+          Chega pra provar, pedir uma dica de look ou só trocar uma ideia.
+        </p>
+        <address>
+          <p class="street">{store.addressStreet}</p>
+          <p>{store.addressDistrict}</p>
+        </address>
+        <ul class="hours">
+          {
+            store.hours.map((slot) => (
+              <li>
+                <span>{slot.days}</span>
+                <span>{slot.time}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="actions">
+          <Button
+            href={whatsappUrl('Oi! Vim pelo site da Landa.')}
+            variant="on-dark"
+            target="_blank"
+            rel="noopener"
+          >
+            Chama no WhatsApp
+          </Button>
+          <Button
+            href={store.mapsDirectionsUrl}
+            variant="on-dark"
+            target="_blank"
+            rel="noopener"
+          >
+            Como chegar
+          </Button>
+        </div>
+      </div>
+      <div class="map" data-reveal>
+        <iframe
+          src={store.mapsEmbedUrl}
+          title="Mapa: Landa — Av. Rui Barbosa, 594, Centro, Linhares-ES"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
       </div>
     </div>
   </Container>
@@ -33,13 +66,76 @@ import Button from '../Button.astro';
     margin-top: var(--section-y);
   }
 
+  /* Mobile-first: texto em cima, mapa embaixo */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
   .lead {
     color: var(--paper-200);
     font-size: var(--text-lg);
     margin-top: calc(-1 * var(--space-8));
   }
 
+  address {
+    font-style: normal;
+    margin-top: var(--space-6);
+  }
+
+  .street {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+
+  address p + p {
+    color: var(--paper-200);
+    margin-top: var(--space-1);
+  }
+
+  .hours {
+    margin-top: var(--space-6);
+    max-width: 22rem;
+    font-size: var(--text-sm);
+    color: var(--paper-200);
+  }
+
+  .hours li {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding-block: var(--space-2);
+    border-bottom: 1px solid var(--line-on-dark);
+  }
+
+  .hours li:first-child {
+    border-top: 1px solid var(--line-on-dark);
+  }
+
   .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
     margin-top: var(--space-8);
+  }
+
+  .map iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border: 0;
+    border-radius: var(--radius-md);
+  }
+
+  @media (min-width: 48rem) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-12);
+    }
   }
 </style>

@@ -1,6 +1,7 @@
 ---
+import { store, whatsappUrl } from '../data/store';
+
 const year = new Date().getFullYear();
-const instagramUrl = 'https://instagram.com/_landaloja';
 ---
 
 <footer class="site-footer">
@@ -17,8 +18,18 @@ const instagramUrl = 'https://instagram.com/_landaloja';
       <p class="tagline">Casual &amp; street desde 1996.</p>
     </div>
     <div class="info">
-      <p>Linhares — Espírito Santo</p>
-      <a href={instagramUrl} target="_blank" rel="noopener">@_landaloja</a>
+      <p>{store.addressStreet} — {store.addressDistrict}</p>
+      <p>Seg a sex, 8h30–18h30 · Sáb, 8h30–13h</p>
+      <a
+        href={whatsappUrl('Oi! Vim pelo site da Landa.')}
+        target="_blank"
+        rel="noopener"
+      >
+        WhatsApp {store.whatsappDisplay}
+      </a>
+      <a href={store.instagramUrl} target="_blank" rel="noopener">
+        {store.instagramHandle}
+      </a>
     </div>
   </div>
   <div class="legal">
