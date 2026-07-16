@@ -12,6 +12,16 @@ export const store = {
     { days: 'Segunda a sexta', time: '8h30 às 18h30' },
     { days: 'Sábado', time: '8h30 às 13h' },
   ],
+  // Espelho dos horários acima em formato schema.org (JSON-LD no <head>)
+  schemaHours: [
+    {
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:30',
+      closes: '18:30',
+    },
+    { dayOfWeek: ['Saturday'], opens: '08:30', closes: '13:00' },
+  ],
+  phoneE164: `+${WHATSAPP_NUMBER}`,
   mapsDirectionsUrl:
     'https://www.google.com/maps/dir/?api=1&destination=Av.+Rui+Barbosa,+594+-+Centro,+Linhares+-+ES',
   mapsEmbedUrl:
