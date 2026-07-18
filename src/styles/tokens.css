@@ -23,8 +23,9 @@
   --white: #ffffff;
 
   /* --- Cores semânticas --- */
-  --bg: var(--paper-100);
-  --bg-alt: var(--paper-200);
+  /* v2 (referencias/): fundo branco de e-commerce; creme vira fundo alternado */
+  --bg: var(--white);
+  --bg-alt: var(--paper-100);
   --bg-dark: var(--ink-900);
   --fg: var(--ink-900);
   --fg-muted: var(--ink-500);
@@ -48,6 +49,8 @@
   --text-xl: clamp(1.25rem, 1.1rem + 0.8vw, 1.625rem);
   --text-2xl: clamp(1.75rem, 1.4rem + 1.8vw, 2.75rem);
   --text-3xl: clamp(2.5rem, 1.8rem + 3.5vw, 4.5rem);
+  /* v2: display gigante do hero (minimalismo exagerado, ref. Aramis) */
+  --text-display: clamp(2.75rem, 1.25rem + 6vw, 6rem);
 
   --leading-tight: 1.1;
   --leading-snug: 1.3;

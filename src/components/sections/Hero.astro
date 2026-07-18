@@ -1,31 +1,25 @@
 ---
-import Container from '../Container.astro';
 import Button from '../Button.astro';
 ---
 
-<!-- Dobra fotográfica: a foto domina, o texto é anotação (macro 08, design.md) -->
-<section class="hero-photo" aria-label="Landa — casual e street desde 1996">
-  <img
-    class="bleed"
-    src="/images/editorial-thesaint.jpg"
-    alt="Look streetwear escuro em cenário editorial"
-    width="1200"
-    height="1500"
-    loading="eager"
-    fetchpriority="high"
-  />
-  <div class="caption">
-    <p class="place">Linhares — ES · desde 1996.</p>
-    <a class="caption-link" href="/produtos">Ver o que chegou →</a>
+<!-- v2 (ref. Aramis, referencias/Capture.PNG): hero dividido — foto de um lado,
+     tipografia display gigante do outro (minimalismo exagerado) -->
+<section class="hero-split" aria-label="Landa — casual e street desde 1996">
+  <div class="photo">
+    <img
+      src="/images/looks/look-trico-mostarda.jpg"
+      alt="Tricô bordô e mostarda na porta da Landa"
+      width="1200"
+      height="1592"
+      loading="eager"
+      fetchpriority="high"
+    />
   </div>
-</section>
-
-<section class="hero-lede">
-  <Container>
+  <div class="statement">
+    <p class="eyebrow">Linhares — ES · Desde 1996</p>
     <h1>Casual &amp; Street pra viver a cidade</h1>
     <p class="lead">
-      Do surf ao streetwear, do dia a dia ao look montado pra sair: a Landa
-      veste Linhares há quase 30 anos.
+      Do surf ao streetwear, do dia a dia ao look montado pra sair.
     </p>
     <div class="actions">
       <Button href="/produtos">Ver produtos</Button>
@@ -38,70 +32,48 @@ import Button from '../Button.astro';
         Siga @_landaloja →
       </a>
     </div>
-  </Container>
+  </div>
 </section>
 
 <style>
-  .hero-photo {
-    position: relative;
-    height: min(72dvh, 42rem);
+  /* Mobile-first: foto em cima, declaração embaixo */
+  .hero-split {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 
-  .hero-photo .bleed {
+  .photo img {
     width: 100%;
-    height: 100%;
+    height: min(60dvh, 34rem);
     object-fit: cover;
-    object-position: 50% 30%;
+    object-position: 50% 25%;
   }
 
-  /* Scrim só na base, pra legenda ler sobre qualquer foto */
-  .caption {
-    position: absolute;
-    inset-inline: 0;
-    bottom: 0;
-    padding: var(--space-16) var(--container-pad) var(--space-6);
-    background: linear-gradient(transparent, var(--scrim-ink));
-    color: var(--fg-on-dark);
+  .statement {
+    padding: var(--space-12) var(--container-pad);
   }
 
-  .place {
+  .eyebrow {
     font-family: var(--font-display);
     font-size: var(--text-xs);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: var(--tracking-wider);
+    color: var(--accent-deep);
   }
 
-  .caption-link {
-    display: inline-block;
-    margin-top: var(--space-2);
-    font-family: var(--font-display);
-    font-size: var(--text-sm);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-wide);
-    color: var(--fg-on-dark);
-    border-bottom: 2px solid var(--accent-soft);
-    padding-bottom: 2px;
-  }
-
-  .caption-link:hover {
-    color: var(--accent-soft);
-  }
-
-  /* Faixa estreita de texto: a declaração vem depois da foto */
-  .hero-lede {
-    padding-block: var(--section-y) 0;
-  }
-
-  .hero-lede h1 {
-    max-width: 16ch;
+  .hero-split h1 {
+    font-size: var(--text-display);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-top: var(--space-4);
+    max-width: 12ch;
   }
 
   .lead {
     font-size: var(--text-lg);
     color: var(--fg-muted);
-    max-width: 44ch;
+    max-width: 40ch;
     margin-top: var(--space-6);
   }
 
@@ -123,19 +95,20 @@ import Button from '../Button.astro';
   }
 
   @media (min-width: 48rem) {
-    .hero-photo {
-      height: min(82dvh, 48rem);
+    .hero-split {
+      grid-template-columns: 1fr 1.2fr;
+      align-items: stretch;
+      border-bottom: 1px solid var(--line);
     }
 
-    .caption {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: var(--space-4);
+    .photo img {
+      height: 100%;
+      min-height: min(78dvh, 46rem);
     }
 
-    .caption-link {
-      margin-top: 0;
+    .statement {
+      align-self: center;
+      padding: var(--space-24) var(--space-12);
     }
   }
 </style>
